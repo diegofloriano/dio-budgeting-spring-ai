@@ -1,23 +1,35 @@
 package dio.budgeting.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
+public class Transaction {
+    private final TransactionId id;
+    private final String description;
+    private final long amount;
+    private final Category category;
 
-@Getter
-@AllArgsConstructor
-public class Transaction{
-    private TransactionId id;
-    private String description;
-    private long amount;
-    private Category category;
-
-    public Transaction(String description, long amount, Category category){
-        this.id = new TransactionId();
+    public Transaction(TransactionId id, String description, long amount, Category category) {
+        this.id = id;
         this.description = description;
         this.amount = amount;
         this.category = category;
-
     }
 
-}
+    public Transaction(String description, long amount, Category category) {
+        this(new TransactionId(), description, amount, category);
+    }
 
+    public TransactionId getId() {
+        return id;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public long getAmount() {
+        return amount;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+}
